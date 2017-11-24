@@ -1,0 +1,64 @@
+{{> login_header }}
+
+
+<div class="main-content">
+<div class="row">
+<div class="col-md-offset-3 col-md-6 col-sm-10 col-sm-offset-1">
+    <div class="login-container">
+	<div class="space-12 hidden-480"></div>
+		<div class="login-logo">
+		<img src="/images/mantis_logo.png">
+	</div>
+		<div class="space-24 hidden-480"></div>
+
+	<div class="position-relative">
+
+		<div class="signup-box visible widget-box no-border" id="login-box">
+			<div class="widget-body">
+				<div class="widget-main">
+					<h4 class="header lighter bigger">
+						<i class="ace-icon fa fa-pencil"></i>
+						{{i18n "s_signup_title"}}					</h4>
+					<div class="space-10"></div>
+
+	<form id="signup-form" method="post" action="signup_page.html">
+		<fieldset>
+			<input type="hidden" name="signup_token" value="201711241O5z2S7cYBez88OZwTpwNqgEZhGn8Hkz">
+			<label for="username" class="block clearfix">
+				<span class="block input-icon input-icon-right">
+					<input id="username" name="username" type="text" placeholder="{{i18n "s_username"}}" size="32" maxlength="191" class="form-control autofocus">
+					<i class="ace-icon fa fa-user"></i>
+				</span>
+			</label>
+
+			<label for="email-field" class="block clearfix">
+				<span class="block input-icon input-icon-right">
+					<input id="email-field" name="email" type="text" placeholder="{{i18n "s_new_account_email"}}" size="32" maxlength="64" class="form-control">
+					<i class="ace-icon fa fa-envelope"></i>
+				</span>
+			</label>
+
+			<div class="clearfix"></div>
+			<div class="space-10"></div>
+                {{{i18n "s_signup_info"}}}
+                <div class="space-10"></div>
+			<input type="submit" class="width-40 pull-right btn btn-success btn-inverse bigger-110" value="{{i18n "s_signup_button"}}">
+		</fieldset>
+	</form>
+</div>
+
+	<div class="toolbar center">
+		<a class="back-to-login-link pull-left" href="login_page.php">Connexion</a>
+					<a class="back-to-login-link pull-right" href="lost_pwd_page.php">Oublié votre mot de passe&nbsp;?</a>
+				<div class="clearfix"></div>
+	</div>
+	</div>
+	</div>
+	</div>
+</div>
+
+</div></div>
+</div>
+
+
+{{> login_footer }}

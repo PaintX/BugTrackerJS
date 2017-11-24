@@ -10,11 +10,15 @@
                     </div>
                  <div class="space-24 hidden-480"></div>
 
-                <div class="alert alert-danger">
-                    <p>
-                        {{{i18n "s_login_error"}}}
-                    </p>
-                </div>
+                {{#if error.length}}
+                    <div class="alert alert-danger">
+                        {{#each error}}
+                            <p>
+                                {{{msg}}}
+                            </p>
+                        {{/each}}
+                    </div>
+                {{/if}}
 
                 <div class="position-relative">
                     <div class="signup-box visible widget-box no-border" id="login-box">
@@ -43,17 +47,23 @@
             </form>
 
         <div class="space-10"></div>
+       
+       {{#if warning.length}}
         <div class="alert alert-warning">
+             {{#each warning}}
             <p>
-                {{{i18n "s_warning_admin_directory_present"}}}
+                {{{msg}}}
             </p>
-            <p>
+          
+           <!-- <p>
                 {{{i18n "s_warning_default_administrator_account_present"}}}
-            </p>
+            </p> --> 
+            {{/each}}
         </div>
+        {{/if}}
     </div>
 
-        <div class="toolbar center"><a class="back-to-login-link pull-left" href="signup_page.php">{{i18n "s_signup_link"}}</a><div class="clearfix"></div></div>
+        <div class="toolbar center"><a class="back-to-login-link pull-left" href="signup_page.html">{{i18n "s_signup_link"}}</a><div class="clearfix"></div></div>
                 </div>
         </div>
         </div>

@@ -15,12 +15,11 @@ var routes =
 		controller: 'login',
 		view: 'login_body',	
 	},
-	'login_post' : 
-	{
-		url: '/login_password_page',
-		controller: 'login',
-		view: 'login_body',	
-	},
+	'signup' : {
+		url: '/signup_page',
+		controller: 'signup',
+		view: 'signup_body',
+	}
 }
 
 module.exports = routes;
