@@ -17,16 +17,13 @@ var i18n = require('./app/helpers/i18n');
 var hbsNotHelper = require('./app/helpers/not');
 var hbsAndHelper = require('./app/helpers/and');
 var hbsOrHelper = require('./app/helpers/or');
-var header = require('./app/includes/header');
-var db = require('./app/includes/db');
 
 var app = express();
 var paths = {};
 
 
-routes = Object.assign({} , routes ,require('./app/config/setup.routes') );
+routes = Object.assign({} , routes ,require('./app/config/admin.routes') );
 
-db.init();
 
 i18n.configure({
     locales: ['en', 'fr'],
@@ -40,11 +37,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, '/app')));
-app.set('views', path.join(__dirname,'/app/themes/CleanFS/templates'));
+app.use(express.static(path.join(__dirname, '/app/themes/MantisBT')));
+app.set('views', path.join(__dirname,'/app/themes/MantisBT'));
 i18n.init(app);
 app.set('view engine', '.hbs');
-app.engine('.hbs', handlebars({ extname: '.hbs', partialsDir: './app/themes/CleanFS/templates', helpers: { i18n: i18n.helper, not: hbsNotHelper.helper, and: hbsAndHelper.helper, or: hbsOrHelper.helper }  }));
+app.engine('.hbs', handlebars({ extname: '.hbs', partialsDir: './app/themes/MantisBT', helpers: { i18n: i18n.helper, not: hbsNotHelper.helper, and: hbsAndHelper.helper, or: hbsOrHelper.helper }  }));
+
+
 
 /**
  * Load all routes in core.routes.
@@ -68,21 +67,12 @@ for (var key in routes) {
 
         path[url].action[action.toUpperCase()] = actionPage;
 
-        app[action](url, function (req, res, next) {
+        app[action](url, function (req, res, next) 
+        {
 
-		console.log('   200 => ' + req.method + ' ' + req.originalUrl);
+		    console.log('   200 => ' + req.method + ' ' + req.originalUrl);
 		
             function _render(result) {
-                header.run(req , res, next);
-
-               // var sessionData = objectAssign(result, { 'session': req.session });
-               /* result = objectAssign(result, functions.page_header(req.session)) ;
-                result.T_TEMPLATE_PATH = '/styles/dualcore/template';
-                result.T_THEME_PATH= '/styles/dualcore/theme';
-                result.S_CONTENT_DIRECTION = 'ltr';
-                result.$BOARD_WIDTH = '80%';
-                result.MENU_ANIMATION = false;
-                result.LOGO_ANIMATION = true;*/
                 res.render(path[req.route.path].render, result);
             }
             var result = path[req.route.path].action[req.method](req, res, next, _render);
@@ -129,7 +119,7 @@ app.use(function (req, res, next) {
 // production error handler
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
-    res.status(err.status || 500).render('./index', { title: "Sorry, page not found", 'error': err.stack});
+    res.status(err.status || 500).render('error_body', { title: "Sorry, page not found", 'error': err.stack});
 });
 
 app.set('port', process.env.PORT || 3000);

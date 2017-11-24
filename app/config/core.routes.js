@@ -10,6 +10,17 @@ var routes =
 		controller: 'index',
 		view: 'index_body',
 	},
+	'login' : {
+		url: '/login_page',
+		controller: 'login',
+		view: 'login_body',	
+	},
+	'login_post' : 
+	{
+		url: '/login_password_page',
+		controller: 'login',
+		view: 'login_body',	
+	},
 }
 
 module.exports = routes;
